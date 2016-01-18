@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <EditText android:id="@+id/formNom"
+        android:hint="Nom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:maxLines="1"/>
+    <EditText android:id="@+id/formPrenom"
+        android:hint="Prenom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:maxLines="1"/>
+     <EditText
+        android:id="@+id/formDateNaiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="1/1/2000" >
+    </EditText>
+
+    <EditText android:id="@+id/formSymptome"
+        android:hint="Symptome(s)"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minLines="5"
+		android:maxLines="5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal" >
+    	
+    	<Button android:id="@+id/sendForm"
+		    android:text="Valider"
+		    android:onClick="modifierPatient"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+    	
+    	<Button android:id="@+id/deletePatient"
+		    android:text="Supprimer"
+		    android:onClick="supprimerPatient"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+    	
+    	<Button android:id="@+id/retour"
+		    android:text="Retour"
+		    android:onClick="backPressed"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+    	
+   	</LinearLayout>
+    
+    
+
+</LinearLayout>

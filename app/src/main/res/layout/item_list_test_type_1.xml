@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/nom_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:text="test"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/button_type_1_fonctionnel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setResFonctionnel"
+            android:minHeight="40dip"
+            android:minWidth="40dip"
+            android:text="Fonc"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/button_type_1_non_fonctionnel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setResNonFonctionnel"
+            android:minHeight="40dip"
+            android:minWidth="40dip"
+            android:text="Non Fonct"
+            android:textSize="13sp" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    	<TextView 
+		    android:paddingLeft="20sp"
+		    android:textSize="14sp"
+		   	
+		    android:gravity="center_vertical"
+	        android:id="@+id/résultat"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="				Résultat :" />
+    	
+    	<Button
+    	    android:textSize="13sp"
+    	    android:visibility="invisible"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:minHeight="40dip"
+            android:minWidth="40dip"
+    	    android:id="@+id/button_cancel"
+    	    android:text="X"
+    	    android:onClick="cancelTest"/>
+    	
+    	<TextView 
+		    android:paddingLeft="20sp"
+		    android:visibility="invisible"
+		    android:textSize="18sp"
+		    android:gravity="center_vertical"
+	        android:id="@+id/contenu_résultat"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="" />
+			        
+	
+    </LinearLayout>
+
+</LinearLayout>

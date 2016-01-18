@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <ImageView
+        
+        android:contentDescription="image d'articulation"
+        android:src="@drawable/pic_blank"
+        android:id="@+id/pic_articulation"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+    />
+    
+	<TextView 
+	    android:paddingLeft="20sp"
+	    android:textSize="17sp"
+	    android:gravity="center_vertical"
+        android:id="@+id/nom_articulation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="test" />
+
+</LinearLayout>
+

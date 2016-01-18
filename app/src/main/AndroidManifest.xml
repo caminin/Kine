@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="charlot.rodolphe.com.gmail.kine"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="20"
+        android:targetSdkVersion="22" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Activities.ActivityMenuApplication"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.ActivityListPatient"
+            android:label="Liste des patients" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityModificationPatient"
+            android:label="Modif des patients" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityEntreTestPatient"
+            android:label="Menu des patients" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityListTest"
+            android:label="Liste des Tests"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityListResultat"
+            android:label="Liste de résultats" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityShowPdf"
+            android:label="Montre le pdf" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityListMenuBdd"
+            android:label="Montre la liste des bdd" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityListShowBdd"
+            android:label="Montre la liste des bdd" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityFormulaire"
+            android:label="Formulaire" >
+        </activity>
+    </application>
+
+</manifest>

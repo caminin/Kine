@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#f2eca9">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#f2eca9"
+        android:layout_weight="0.42">
+
+        <TextView android:id="@+id/text_kine"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestion des patients"
+                  android:textSize="30dp"
+                  android:textAlignment="center"
+                  android:phoneNumber="false"
+                  android:background="#FD6C9E"
+                  android:elevation="5dp"
+                  android:layout_centerVertical="true"
+                  android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kinésithérapeute"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:background="#FD6C9E"
+            android:elegantTextHeight="false"
+            android:elevation="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="353dp"
+        android:layout_weight="0.41"
+        android:background="#f2eca9">
+
+        <Button android:id="@+id/menu1"
+                    android:text="Nouveau patient"
+                    android:onClick="menuNouveauPatient"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                android:layout_weight="0.08"
+                android:elevation="5dp"
+                android:background="@drawable/plop"
+                android:layout_marginTop="56dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/menu2"
+                android:layout_alignStart="@+id/menu2"/>
+
+        <Button android:id="@+id/menu3"
+                    android:text="Liste patients"
+                    android:onClick="menuListPatient"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                android:layout_gravity="right"
+                android:layout_alignTop="@+id/menu1"
+                android:layout_alignLeft="@+id/menu4"
+                android:layout_alignStart="@+id/menu4"
+                android:elegantTextHeight="false"
+                android:elevation="5dp"
+                android:background="@drawable/plop"/>
+
+        <Button android:id="@+id/menu2"
+                    android:text="Supprimer BDD"
+                    android:onClick="SupprimerBDD"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                android:layout_marginLeft="37dp"
+                android:layout_marginStart="37dp"
+                android:elevation="5dp"
+                android:enabled="true"
+                android:background="@drawable/plop"
+                android:layout_marginBottom="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+        <Button android:id="@+id/menu4"
+                    android:text="Inutile"
+                    android:onClick="chargerBdd"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="46dp"
+                android:layout_marginEnd="46dp"
+                android:elevation="5dp"
+                android:background="@drawable/plop"
+                android:layout_alignTop="@+id/menu2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
