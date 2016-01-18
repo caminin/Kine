@@ -22,6 +22,7 @@ public class IntentInterface implements Serializable {
     private void initiate(){
         switch(asker.toString()){
             default:
+                Log.v("intentInterface","il n'a pas de get ici");
                 Log.v("intentInterface", asker.toString());
         }
     }
