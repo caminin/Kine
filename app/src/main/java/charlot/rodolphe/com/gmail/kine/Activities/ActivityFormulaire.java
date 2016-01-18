@@ -64,8 +64,8 @@ public class ActivityFormulaire extends Activity {
     }
 
     public void onBackPressed(){
-        Intent intent=getParentActivityIntent();
-        /*if(myactivity!=null){
+        Intent intent;
+        if(myactivity!=null){
             if(myactivity.equals("menu")){
                 intent=new Intent(ActivityFormulaire.this,ActivityMenuApplication.class);
             }
@@ -79,7 +79,7 @@ public class ActivityFormulaire extends Activity {
             intent=new Intent(ActivityFormulaire.this,ActivityListShowBdd.class);
             intent.putExtra("action",action);
             intent.putExtra("bdd",bdd);
-        }*/
+        }
         startActivity(intent);
     }
 }

@@ -25,11 +25,9 @@ public class ActivityMenuApplication extends Activity {
 	}
 
 	public void menuNouveauPatient(View v){
-        Intent intent=new Intent(ActivityMenuApplication.this,ActivityFormulaire.class);
-        intent.putExtra("action","ajout");
-        intent.putExtra("bdd","patient.db");
-        intent.putExtra("activity","menu");
-        startActivity(intent);
+        IntentInterface intent=new IntentInterface(this,new ActivityFormulaire());
+
+        intent.startIntent();
 	}
 
 	public void menuListPatient(View v){

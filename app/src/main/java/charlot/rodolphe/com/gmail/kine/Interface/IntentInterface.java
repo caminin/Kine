@@ -13,17 +13,22 @@ public class IntentInterface implements Serializable {
     private Activity asker;
     private Activity receiver;
 
-    public IntentInterface(HashMap<String,String> _content,Activity _asker, Activity _receiver){
-        content=_content;
+    public IntentInterface(Activity _asker, Activity _receiver){
+        content=new HashMap<>();
         asker=_asker;
         receiver=_receiver;
     }
 
     private void initiate(){
-        switch(asker.toString()){
+        String activityName=receiver.getLocalClassName().replace("Activities.","");
+        switch(activityName){
+            case "ActivityMenuApplication":
+                break;
+            case "ActivityFormulaire":
+                break;
             default:
                 Log.v("intentInterface","il n'a pas de get ici");
-                Log.v("intentInterface", asker.toString());
+                Log.v("intentInterface", activityName);
         }
     }
 
