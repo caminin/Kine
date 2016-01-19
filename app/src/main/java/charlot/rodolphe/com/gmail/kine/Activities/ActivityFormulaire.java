@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.Serializable;
+import java.util.HashMap;
+
+import charlot.rodolphe.com.gmail.kine.Interface.IntentInterface;
+import charlot.rodolphe.com.gmail.kine.MyException.IntentException;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddClass;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddInterface;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ElementInterface;
@@ -23,20 +28,30 @@ public class ActivityFormulaire extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        if (intent != null) {
-            action = intent.getStringExtra("action");
-            bdd = intent.getStringExtra("bdd");
-            myactivity = intent.getStringExtra("activity");
-            element = (ElementInterface) intent.getSerializableExtra("element");
+        IntentInterface intent=new IntentInterface(getIntent());
+        try {
+            action = intent.getString("action") ;
+            bdd = intent.getString("bdd");
+            myactivity = intent.getString("activity");
+
             BddClass bdd_class = new BddClass();
             mybdd = bdd_class.getBdd(bdd);
             setContentView(mybdd.getXml());
 
-            if (element != null) {//si on avait pas d'élément on prend le premier de la base, mais on ne remplit pas
-                mybdd.setFieldByElement(this, element);
-            }
+
+        } catch (IntentException e) {
+            e.printStackTrace();
         }
+
+        try {
+            element = (ElementInterface) intent.getSerializable("element");
+            mybdd.setFieldByElement(this, element);
+        } catch (IntentException e) {
+            //plop
+        }
+
+
+
     }
 
     public void liste1(View v){
