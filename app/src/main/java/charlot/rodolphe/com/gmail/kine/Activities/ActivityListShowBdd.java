@@ -160,9 +160,4 @@ public class ActivityListShowBdd extends ListActivity {
         return (super.onContextItemSelected(item));
     }
 
-    public void onBackPressed(){
-        Intent intent=new Intent(ActivityListShowBdd.this,ActivityListMenuBdd.class);
-        startActivity(intent);
-    }
-
 }

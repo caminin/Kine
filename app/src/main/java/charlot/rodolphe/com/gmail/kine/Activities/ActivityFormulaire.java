@@ -7,11 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
-import charlot.rodolphe.com.gmail.kine.Interface.IntentInterface;
-import charlot.rodolphe.com.gmail.kine.MyException.IntentException;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddClass;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddInterface;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ElementInterface;
@@ -21,37 +16,25 @@ public class ActivityFormulaire extends Activity {
 
     private String action;
     private String bdd;
-    private String myactivity;
     private ElementInterface element;
     private BddInterface mybdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IntentInterface intent=new IntentInterface(getIntent());
-        try {
-            action = intent.getString("action") ;
-            bdd = intent.getString("bdd");
-            myactivity = intent.getString("activity");
-
+        Intent intent = getIntent();
+        if (intent != null) {
+            action = intent.getStringExtra("action");
+            bdd = intent.getStringExtra("bdd");
+            element = (ElementInterface) intent.getSerializableExtra("element");
             BddClass bdd_class = new BddClass();
             mybdd = bdd_class.getBdd(bdd);
             setContentView(mybdd.getXml());
 
-
-        } catch (IntentException e) {
-            e.printStackTrace();
+            if (element != null) {//si on avait pas d'élément on prend le premier de la base, mais on ne remplit pas
+                mybdd.setFieldByElement(this, element);
+            }
         }
-
-        try {
-            element = (ElementInterface) intent.getSerializable("element");
-            mybdd.setFieldByElement(this, element);
-        } catch (IntentException e) {
-            //plop
-        }
-
-
-
     }
 
     public void liste1(View v){
@@ -78,23 +61,4 @@ public class ActivityFormulaire extends Activity {
         onBackPressed();
     }
 
-    public void onBackPressed(){
-        Intent intent;
-        if(myactivity!=null){
-            if(myactivity.equals("menu")){
-                intent=new Intent(ActivityFormulaire.this,ActivityMenuApplication.class);
-            }
-            else{
-                intent=new Intent(ActivityFormulaire.this,ActivityListShowBdd.class);
-                intent.putExtra("action",action);
-                intent.putExtra("bdd",bdd);
-            }
-        }
-        else{
-            intent=new Intent(ActivityFormulaire.this,ActivityListShowBdd.class);
-            intent.putExtra("action",action);
-            intent.putExtra("bdd",bdd);
-        }
-        startActivity(intent);
-    }
 }

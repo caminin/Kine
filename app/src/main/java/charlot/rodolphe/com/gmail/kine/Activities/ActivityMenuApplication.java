@@ -8,10 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import charlot.rodolphe.com.gmail.kine.Interface.IntentInterface;
-import charlot.rodolphe.com.gmail.kine.Interface.ResultatInterface;
-import charlot.rodolphe.com.gmail.kine.Interface.TemoinResInterface;
-import charlot.rodolphe.com.gmail.kine.Interface.UniteInterface;
 import charlot.rodolphe.com.gmail.kine.R;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ContextNeeded;
 
@@ -25,12 +21,11 @@ public class ActivityMenuApplication extends Activity {
 	}
 
 	public void menuNouveauPatient(View v){
-        Activity act=new ActivityFormulaire();
-        IntentInterface intent=new IntentInterface(this.getLocalClassName(),act.getLocalClassName());
-        intent.putString("action", "ajout");
-        intent.putString("bdd", "patient.db");
-        intent.putString("activity","menu");
-        intent.startIntent();
+        Intent intent=new Intent(ActivityMenuApplication.this,ActivityFormulaire.class);
+        intent.putExtra("action","ajout");
+        intent.putExtra("bdd","patient.db");
+        intent.putExtra("activity","menu");
+        startActivity(intent);
 	}
 
 	public void menuListPatient(View v){
@@ -67,7 +62,4 @@ public class ActivityMenuApplication extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
-    public void onBackPressed(){
-        Toast.makeText(getApplicationContext(),"Nop, tu pars pars",Toast.LENGTH_LONG).show();
-    }
 }

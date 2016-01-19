@@ -206,10 +206,4 @@ public class ActivityListTest extends ListActivity  {
         startActivity(intent);
     }
 
-    public void onBackPressed(){
-        Intent new_intent=new Intent(ActivityListTest.this,ActivityEntreTestPatient.class);
-        new_intent.putExtra("idPatient",patient.id_pat);
-        startActivity(new_intent);
-    }
-	
 }

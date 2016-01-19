@@ -120,8 +120,4 @@ public class ActivityListPatient extends ListActivity {
 		return (super.onContextItemSelected(item));
 	}
 
-    public void onBackPressed(){
-        Intent new_intent=new Intent(ActivityListPatient.this,ActivityMenuApplication.class);
-        startActivity(new_intent);
-    }
 }

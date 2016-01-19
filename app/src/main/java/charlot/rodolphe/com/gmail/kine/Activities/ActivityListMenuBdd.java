@@ -44,7 +44,7 @@ public class ActivityListMenuBdd extends ExpandableListActivity {
         for(String element : getApplicationContext().databaseList()){
             if(!element.contains("journal")){//on enlève les journaux des bdd
                 listDataHeader.add(element);
-                List<String> list_element=new ArrayList<String>();
+                List<String> list_element=new ArrayList<>();
                 list_element.add("ajouter un élément");
                 list_element.add("modifier un élément");
                 list_element.add("supprimer un/des élément(s)");
@@ -89,8 +89,4 @@ public class ActivityListMenuBdd extends ExpandableListActivity {
         return false;
     }
 
-    public void onBackPressed(){
-        Intent new_intent=new Intent(ActivityListMenuBdd.this,ActivityMenuApplication.class);
-        startActivity(new_intent);
-    }
 }

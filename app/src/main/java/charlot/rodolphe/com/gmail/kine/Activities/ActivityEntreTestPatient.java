@@ -45,7 +45,7 @@ public class ActivityEntreTestPatient extends ListActivity {
 		TextView symptome=(TextView) findViewById(R.id.list_symptomes);
 		PatientBdd pat_bdd=new PatientBdd(this);
 		pat_bdd.open();
-            PatientInterface patient= null;
+            PatientInterface patient;
             try {
                 patient = pat_bdd.getPatientWithId(idPatient);
                 symptome.setText(patient.symptome_pat);
@@ -177,8 +177,4 @@ public class ActivityEntreTestPatient extends ListActivity {
 
 	}
 
-    public void onBackPressed(){
-        Intent intent=new Intent(ActivityEntreTestPatient.this,ActivityListPatient.class);
-        startActivity(intent);
-    }
 }

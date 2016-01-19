@@ -108,9 +108,4 @@ public class ActivityModificationPatient extends Activity {
 		onBackPressed();
 	}
 
-    public void onBackPressed(){
-        Intent new_intent=new Intent(ActivityModificationPatient.this,ActivityListPatient.class);
-        startActivity(new_intent);
-    }
-	
 }

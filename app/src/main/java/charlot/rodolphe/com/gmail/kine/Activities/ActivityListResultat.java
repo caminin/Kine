@@ -225,10 +225,4 @@ public class ActivityListResultat extends ListActivity {
         onBackPressed();
     }
 
-    public void onBackPressed(){
-        Intent intent=new Intent(ActivityListResultat.this,ActivityListTest.class);
-        intent.putExtra("idPatient",patient.id_pat);
-        intent.putExtra("articulationName", localisation);
-        startActivity(intent);
-    }
 }

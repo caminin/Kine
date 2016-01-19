@@ -69,9 +69,4 @@ public class ActivityShowPdf extends Activity {
         }
     }
 
-    public void onBackPressed(){
-        Intent new_intent=new Intent(ActivityShowPdf.this,ActivityListResultat.class);
-        new_intent.putExtra("idPatient",idPatient);
-        startActivity(new_intent);
-    }
 }
