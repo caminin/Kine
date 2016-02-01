@@ -184,8 +184,13 @@ public class UniteBdd extends BddClass implements BddInterface {
     }
 
     @Override
-    public String[] getForeignList(ElementInterface element, int numListe, String action) throws BddException.BddNoElementException {
-        return new String[0];
+    public ElementInterface getNewElement() {
+        return null;
+    }
+
+    @Override
+    public int getForeignList(ElementInterface element, int numListe) throws BddException.BddNoElementException {
+        return -1;
     }
 
     public class MaBddUnite extends SQLiteOpenHelper {

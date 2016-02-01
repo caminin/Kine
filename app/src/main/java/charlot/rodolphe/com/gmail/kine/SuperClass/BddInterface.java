@@ -17,7 +17,8 @@ public interface BddInterface {
     void getByContext(Activity act) throws BddException.BddInsertException;
     void setFieldByElement(Activity act,ElementInterface element);
     int getXml();
-    String[] getForeignList(ElementInterface element,int numListe,String action) throws BddException.BddNoElementException;
-
+    ElementInterface getNewElement();
+    int getForeignList(ElementInterface element,int numListe) throws BddException.BddNoElementException;
+    int addForeignList(int numListe) throws BddException.BddNoElementException;
 
 }

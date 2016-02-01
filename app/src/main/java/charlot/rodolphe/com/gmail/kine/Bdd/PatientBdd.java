@@ -230,8 +230,13 @@ public class PatientBdd extends BddClass implements BddInterface {
     }
 
     @Override
-    public String[] getForeignList(ElementInterface element, int numListe, String action) {
-        return new String[0];
+    public ElementInterface getNewElement() {
+        return null;
+    }
+
+    @Override
+    public int getForeignList(ElementInterface element, int numListe) {
+        return -1;
     }
 
 

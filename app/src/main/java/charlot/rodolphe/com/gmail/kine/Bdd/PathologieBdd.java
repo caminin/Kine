@@ -7,10 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.EditText;
 
 import charlot.rodolphe.com.gmail.kine.Interface.PathologieInterface;
 import charlot.rodolphe.com.gmail.kine.Interface.TemoinResInterface;
 import charlot.rodolphe.com.gmail.kine.MyException.BddException;
+import charlot.rodolphe.com.gmail.kine.R;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddClass;
 import charlot.rodolphe.com.gmail.kine.SuperClass.BddInterface;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ElementInterface;
@@ -69,7 +71,13 @@ public class PathologieBdd extends BddClass implements BddInterface {
 
     @Override
     public void getByContext(Activity act) throws BddException.BddInsertException {
+        ContentValues values = new ContentValues();
+        values.put(COL_NOM_PATHOLOGIE, ((EditText) act.findViewById(R.id.nom)).getText().toString());
+        //values.put(COL_ID_LIST_RES_PATHOLOGIE, (act.findViewById(R.id.list_res)).getTag());
 
+        if(bdd.insert(TABLE_PATHOLOGIE,null,values)==-1){
+            throw new BddException.BddInsertException("PathologieBdd");
+        }
     }
 
     @Override
@@ -208,20 +216,32 @@ public class PathologieBdd extends BddClass implements BddInterface {
 
     @Override
     public int getXml() {
-        return 0;
+        return R.layout.formulaire_pathologie;
     }
 
     @Override
-    public String[] getForeignList(ElementInterface element, int numListe, String action)
+    public ElementInterface getNewElement() {
+        PathologieInterface pat=new PathologieInterface("",(-1));
+        return pat;
+
+    }
+
+    @Override
+    public int getForeignList(ElementInterface element, int numListe)
             throws BddException.BddNoElementException {
+        int id_list=-1;
         switch(numListe){
             case 0:
-                TemoinResBdd bdd=new TemoinResBdd(getContext());
-                bdd.open();
-                    TemoinResInterface temoin[]=bdd.getTemoinWithListRes(((PathologieInterface) element).id_list_res_pathologie);
-                bdd.close();
+                id_list=((PathologieInterface) element).id_list_res_pathologie;
                 break;
         }
-        return new String[0];
+        return id_list;
     }
+
+    @Override
+    public int addForeignList(int numListe) throws BddException.BddNoElementException {
+
+        return -1;
+    }
+
 }
