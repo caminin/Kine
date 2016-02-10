@@ -23,8 +23,8 @@ public class TemoinResBdd extends BddClass implements BddInterface {
     private static final String TABLE_TEMOIN_RES_BDD = "table_temoin_res_bdd";
     private static final String COL_ID_TEMOIN = "ID_TEMOIN";
     private static final int NUM_COL_ID_TEMOIN = 0;
-    private static final String COL_ID_LIST_RES = "ID_LIST_RES";
-    private static final int NUM_COL_ID_LIST_RES = 1;
+    private static final String COL_ID_PATHOLOGIE = "ID_PATHOLOGIE";
+    private static final int NUM_COL_ID_PATHOLOGIE = 1;
     private static final String COL_ID_TEST_TEMOIN = "ID_TEST_TEMOIN";
     private static final int NUM_COL_ID_TEST_TEMOIN = 2;
     private static final String COL_COMPARATEUR = "COMPARATEUR";
@@ -71,7 +71,7 @@ public class TemoinResBdd extends BddClass implements BddInterface {
         test_bdd.close();
 
 
-        String res="Temoin de la liste "+temoin.id_list_res+" au test "+test.nom_test+" qui donne "
+        String res="Temoin de la liste "+temoin.id_pathologie+" au test "+test.nom_test+" qui donne "
                 +temoin.comparateur_temoin+temoin.variable_1+temoin.variable_2;
         return res;
     }
@@ -80,6 +80,13 @@ public class TemoinResBdd extends BddClass implements BddInterface {
     public void deleteWithId(int id)
             throws BddException.BddNoElementException {
         if(bdd.delete(TABLE_TEMOIN_RES_BDD,COL_ID_TEMOIN+" = "+id,null)==-1){
+            throw new BddException.BddNoElementException(TABLE_TEMOIN_RES_BDD);
+        }
+    }
+
+    public void deleteWithIdPathologie(int id_pathologie)
+            throws BddException.BddNoElementException {
+        if(bdd.delete(TABLE_TEMOIN_RES_BDD,COL_ID_PATHOLOGIE+" = "+id_pathologie,null)==-1){
             throw new BddException.BddNoElementException(TABLE_TEMOIN_RES_BDD);
         }
     }
@@ -97,7 +104,7 @@ public class TemoinResBdd extends BddClass implements BddInterface {
     public void insertTemoin(TemoinResInterface mytemoin)
             throws BddException.BddInsertException, BddException.BddDejaExistantException{
         ContentValues values = new ContentValues();
-        values.put(COL_ID_LIST_RES, mytemoin.id_list_res);
+        values.put(COL_ID_PATHOLOGIE, mytemoin.id_pathologie);
         values.put(COL_ID_TEST_TEMOIN, mytemoin.id_test_temoin);
         values.put(COL_COMPARATEUR, mytemoin.comparateur_temoin);
         values.put(COL_VARIABLE_1, mytemoin.variable_1);
@@ -119,27 +126,27 @@ public class TemoinResBdd extends BddClass implements BddInterface {
         }
     }
 
-    public TemoinResInterface[] getTemoinWithListRes(int id_list_res)
+    public TemoinResInterface[] getTemoinWithPathologie(int id_pathologie)
             throws BddException.BddNoElementException {
-        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_LIST_RES,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_LIST_RES+" = "+id_list_res,null,null,null,null);
+        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_PATHOLOGIE,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_PATHOLOGIE+" = "+id_pathologie,null,null,null,null);
         return allCursorToTemoin(c);
     }
 
     public TemoinResInterface[] getTemoinWithIdTest(int id_test)
             throws BddException.BddNoElementException {
-        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_LIST_RES,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_TEST_TEMOIN+" = "+id_test,null,null,null,null);
+        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_PATHOLOGIE,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_TEST_TEMOIN+" = "+id_test,null,null,null,null);
         return allCursorToTemoin(c);
     }
 
     public TemoinResInterface getTemoinWithId(int id)
             throws BddException.BddNoElementException {
-        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_LIST_RES,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_TEMOIN+" = "+id,null,null,null,null);
+        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_PATHOLOGIE,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},COL_ID_TEMOIN+" = "+id,null,null,null,null);
         return cursorToLastTemoin(c);
     }
 
     public TemoinResInterface[] getAll()
             throws BddException.BddNoElementException {
-        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_LIST_RES,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},null,null,null,null,null);
+        Cursor c = bdd.query(TABLE_TEMOIN_RES_BDD,new String[] {COL_ID_TEMOIN,COL_ID_PATHOLOGIE,COL_ID_TEST_TEMOIN,COL_COMPARATEUR,COL_VARIABLE_1,COL_VARIABLE_2},null,null,null,null,null);
         return allCursorToTemoin(c);
     }
 
@@ -161,10 +168,10 @@ public class TemoinResBdd extends BddClass implements BddInterface {
             //On créé un test
             TemoinResInterface temoin;
             if(c.getColumnCount()==5){
-                temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_LIST_RES),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1));
+                temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_PATHOLOGIE),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1));
             }
             else{
-                temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_LIST_RES),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1),c.getString(NUM_COL_VARIABLE_2));
+                temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_PATHOLOGIE),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1),c.getString(NUM_COL_VARIABLE_2));
             }
             temoin.id_temoin_res=c.getInt(NUM_COL_ID_TEMOIN);
             tab_temoin[i]=temoin;
@@ -193,7 +200,7 @@ public class TemoinResBdd extends BddClass implements BddInterface {
         //Sinon on se place sur le premier élément
         c.moveToLast();
         //On créé un test
-        TemoinResInterface temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_LIST_RES),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1),c.getString(NUM_COL_VARIABLE_2));
+        TemoinResInterface temoin=new TemoinResInterface(c.getInt(NUM_COL_ID_PATHOLOGIE),c.getInt(NUM_COL_ID_TEST_TEMOIN),c.getString(NUM_COL_COMPARATEUR),c.getString(NUM_COL_VARIABLE_1),c.getString(NUM_COL_VARIABLE_2));
         temoin.id_temoin_res=c.getInt(NUM_COL_ID_TEMOIN);
         //on lui affecte toutes les infos grâce aux infos contenues dans le Cursor
 
@@ -219,10 +226,20 @@ public class TemoinResBdd extends BddClass implements BddInterface {
         return -1;
     }
 
+    @Override
+    public void switchButtonVisibility(Activity act, int numListe, int ajoutVisible, int otherVisible) {
+
+    }
+
+    @Override
+    public void deleteListWithNumAndId(int numListe, int id) throws BddException.BddNoElementException {
+
+    }
+
     public class MaBddTemoinRes extends SQLiteOpenHelper {
         private static final String TABLE_TEMOIN_RES_BDD = "table_temoin_res_bdd";
         private static final String COL_ID_TEMOIN = "ID_TEMOIN";
-        private static final String COL_ID_LIST_RES = "ID_LIST_RES";
+        private static final String COL_ID_PATHOLOGIE = "ID_PATHOLOGIE";
         private static final String COL_ID_TEST_TEMOIN = "ID_TEST_TEMOIN";
         private static final String COL_COMPARATEUR = "COMPARATEUR";
         private static final String COL_VARIABLE_1 = "VARIABLE_1";
@@ -230,11 +247,12 @@ public class TemoinResBdd extends BddClass implements BddInterface {
         private static final String CREATE_BDD =
                 "CREATE TABLE " + TABLE_TEMOIN_RES_BDD + " ("+
                         COL_ID_TEMOIN + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                        COL_ID_LIST_RES + " INTEGER NOT NULL,"+
+                        COL_ID_PATHOLOGIE + " INTEGER NOT NULL,"+
                         COL_ID_TEST_TEMOIN + " INTEGER NOT NULL,"+
                         COL_COMPARATEUR + " TEXT NOT NULL,"+
                         COL_VARIABLE_1 + " FLOAT NOT NULL,"+
                         COL_VARIABLE_2 + " FLOAT ,"+
+                        "FOREIGN KEY("+COL_ID_PATHOLOGIE+") REFERENCES table_pathologie(ID_PATHOLOGIE),"+
                         "FOREIGN KEY("+COL_ID_TEST_TEMOIN+") REFERENCES table_test(ID_TEST));";
 
         public MaBddTemoinRes(Context context, String name, CursorFactory factory,

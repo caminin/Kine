@@ -8,6 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Date;
+
+import charlot.rodolphe.com.gmail.kine.Bdd.PatientBdd;
+import charlot.rodolphe.com.gmail.kine.Interface.PatientInterface;
+import charlot.rodolphe.com.gmail.kine.MyException.BddException;
 import charlot.rodolphe.com.gmail.kine.R;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ContextNeeded;
 
@@ -59,6 +64,14 @@ public class ActivityMenuApplication extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        PatientBdd pat=new PatientBdd(getApplicationContext());
+        pat.open();
+            try {
+                pat.insertPatient(new PatientInterface("chatonnom", "chatonprenom", new Date(1993, 10, 10), "plopsymptome"));
+            } catch (BddException.BddInsertException e) {
+                e.printStackTrace();
+            }
+        pat.close();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 

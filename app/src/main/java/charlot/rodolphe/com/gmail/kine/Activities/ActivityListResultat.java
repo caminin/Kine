@@ -92,10 +92,10 @@ public class ActivityListResultat extends ListActivity {
                             tab_temoin = temoin_bdd.getTemoinWithIdTest(tab_resultat[i].id_test_res);//si le résultat a un témoin
                             for (int j = 0; j < tab_temoin.length; j++) {//parcours les témoins de ce résultat
                                 if (tab_temoin[j].comparaison_res_temoin(tab_resultat[i])) {//si le résultat correspond à un témoin
-                                    Log.v("sendRes", "Le résultat est conforme, on recherche " + tab_temoin[j].id_list_res);
+                                    Log.v("sendRes", "Le résultat est conforme, on recherche " + tab_temoin[j].id_pathologie);
                                     TemoinResInterface tab_temoin_une_path[];
                                     try {
-                                        tab_temoin_une_path = temoin_bdd.getTemoinWithListRes(tab_temoin[j].id_list_res);//on récupère la liste des autres témoins de la liste de la pathologie
+                                        tab_temoin_une_path = temoin_bdd.getTemoinWithPathologie(tab_temoin[j].id_pathologie);//on récupère la liste des autres témoins de la liste de la pathologie
                                         Log.v("listres_tabtemoin", tab_temoin_une_path[0].toString());
                                         Log.v("listres", "je regarde si les autres sont valides aussi");
                                         hasOtherRes(tab_resultat, tab_temoin_une_path);//on regarde si tous sont valides
@@ -113,7 +113,7 @@ public class ActivityListResultat extends ListActivity {
                     temoin_bdd.close();
                     PathologieInterface[] tableau = new PathologieInterface[nombre_pathologie];
                     for (int i = 0; i < nombre_pathologie; i++) {
-                        tableau[i] = new PathologieInterface(tab_pathologie[i].nom_pathologie, tab_pathologie[i].id_list_res_pathologie);
+                        tableau[i] = new PathologieInterface(tab_pathologie[i].nom_pathologie);
                         tableau[i].id_pathologie = tab_pathologie[i].id_pathologie;
                         Log.v("listres", tableau[i].toString());
                     }
@@ -153,7 +153,7 @@ public class ActivityListResultat extends ListActivity {
             path_bdd.open();
 
             try {
-                tab_pathologie[nombre_pathologie]=(path_bdd.getPathologieWithListRes(tab_temoin_path[0].id_list_res));
+                tab_pathologie[nombre_pathologie]=(path_bdd.getPathologieWithId(tab_temoin_path[0].id_pathologie));
             } catch (BddException.BddNoElementException e) {
                 Log.v("listres","je recherche une liste qui n'existe pas en pathologie");
             }

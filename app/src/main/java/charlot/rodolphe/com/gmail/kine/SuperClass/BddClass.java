@@ -1,6 +1,8 @@
 package charlot.rodolphe.com.gmail.kine.SuperClass;
 
+import android.opengl.Visibility;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import charlot.rodolphe.com.gmail.kine.Bdd.PathologieBdd;
@@ -11,7 +13,7 @@ import charlot.rodolphe.com.gmail.kine.Bdd.TestBdd;
 import charlot.rodolphe.com.gmail.kine.Bdd.UniteBdd;
 
 public class BddClass extends ContextNeeded {
-    public BddInterface getBdd(String bdd){
+    /*public BddInterface getBdd(String bdd){
         BddInterface mybdd=null;
         switch (bdd) {
             case "patient.db":
@@ -38,5 +40,10 @@ public class BddClass extends ContextNeeded {
                 break;
         }
         return mybdd;
+    }*/
+
+    public NewBddInterface getBdd(String s){
+        return new PathologieBdd(getContext());
     }
+
 }

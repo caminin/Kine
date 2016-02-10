@@ -20,6 +20,7 @@ import charlot.rodolphe.com.gmail.kine.SuperClass.BddInterface;
 import charlot.rodolphe.com.gmail.kine.SuperClass.ElementInterface;
 import charlot.rodolphe.com.gmail.kine.MyException.BddException;
 import charlot.rodolphe.com.gmail.kine.R;
+import charlot.rodolphe.com.gmail.kine.SuperClass.NewBddInterface;
 
 public class ActivityListShowBdd extends ListActivity {
     private ArrayAdapter<String> bdd_adapter;
@@ -76,7 +77,7 @@ public class ActivityListShowBdd extends ListActivity {
 
         BddClass bdd=new BddClass();
 
-        BddInterface mybdd=bdd.getBdd(bdd_string);
+        NewBddInterface mybdd=bdd.getBdd(bdd_string);
 
         if (mybdd != null) {
             mybdd.open();

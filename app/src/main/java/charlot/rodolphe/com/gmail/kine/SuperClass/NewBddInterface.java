@@ -3,10 +3,12 @@ package charlot.rodolphe.com.gmail.kine.SuperClass;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import charlot.rodolphe.com.gmail.kine.MyException.BddException;
 
 
-public interface BddInterface {
+public interface NewBddInterface {
     void open();
     void close();
     SQLiteDatabase getBDD();
@@ -16,7 +18,7 @@ public interface BddInterface {
     void deleteWithId(int id) throws BddException.BddNoElementException;
 
     void getByContext(Activity act) throws BddException.BddInsertException;
-    void setFieldByElement(Activity act,ElementInterface element);
+    void setFieldByElement(Activity act,ElementInterface element,ArrayList<Integer> id_list);
     int getXml();
     ElementInterface getNewElement();
     int getForeignList(ElementInterface element,int numListe) throws BddException.BddNoElementException;

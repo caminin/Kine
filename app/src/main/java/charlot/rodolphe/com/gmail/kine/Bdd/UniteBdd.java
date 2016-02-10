@@ -193,6 +193,16 @@ public class UniteBdd extends BddClass implements BddInterface {
         return -1;
     }
 
+    @Override
+    public void switchButtonVisibility(Activity act, int numListe, int ajoutVisible, int otherVisible) {
+
+    }
+
+    @Override
+    public void deleteListWithNumAndId(int numListe, int id) throws BddException.BddNoElementException {
+
+    }
+
     public class MaBddUnite extends SQLiteOpenHelper {
 		private static final String TABLE_UNITE = "table_unite";
 		private static final String COL_ID_TEST = "ID_TEST";

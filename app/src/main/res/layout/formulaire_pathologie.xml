@@ -40,10 +40,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/list_res"
-            android:layout_alignBottom="@+id/button3"
+            android:layout_alignBottom="@+id/btnVoir"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/button3"
+            android:layout_toStartOf="@+id/btnVoir"
             android:text="Liste de résultat"
             android:textSize="17sp"
             android:gravity="center_vertical"/>
@@ -55,7 +55,7 @@
             android:tag="0"
             android:visibility="invisible"
             android:onClick="SupprimerListe"
-            android:id="@+id/button"
+            android:id="@+id/btnSupprimer"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:textSize="12sp"/>
@@ -63,13 +63,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ajouter/Modifier"
+            android:text="Modifier"
             android:tag="0"
             android:onClick=""
             android:visibility="invisible"
-            android:id="@+id/button2"
+            android:id="@+id/btnModif"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/button"
+            android:layout_toStartOf="@+id/btnSupprimer"
             android:textSize="12sp"/>
 
         <Button
@@ -79,9 +79,9 @@
             android:visibility="invisible"
             android:tag="0"
             android:onClick="ContenuListe"
-            android:id="@+id/button3"
+            android:id="@+id/btnVoir"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/button2"
+            android:layout_toStartOf="@+id/btnModif"
             android:textSize="12sp"/>
         <Button
             android:layout_width="wrap_content"
@@ -89,9 +89,9 @@
             android:text="Ajouter"
             android:tag="0"
             android:onClick="AjouterListe"
-            android:id="@+id/button0"
+            android:id="@+id/btnAjout"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/button2"
+            android:layout_toStartOf="@+id/btnModif"
             android:textSize="12sp"/>
     </RelativeLayout>
 

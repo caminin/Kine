@@ -212,6 +212,16 @@ public class TestBdd extends BddClass implements BddInterface {
         return -1;
     }
 
+    @Override
+    public void switchButtonVisibility(Activity act, int numListe, int ajoutVisible, int otherVisible) {
+
+    }
+
+    @Override
+    public void deleteListWithNumAndId(int numListe, int id) throws BddException.BddNoElementException {
+
+    }
+
     public class MaBddTest extends SQLiteOpenHelper {
 		private static final String TABLE_TEST = "table_test";
 		private static final String COL_ID_TEST = "ID_TEST";

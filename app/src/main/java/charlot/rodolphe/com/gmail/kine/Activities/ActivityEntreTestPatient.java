@@ -160,7 +160,7 @@ public class ActivityEntreTestPatient extends ListActivity {
             Toast.makeText(this,"Le test existe déjà", Toast.LENGTH_LONG).show();
         }
 
-        PathologieInterface path=new PathologieInterface("chatonpat",1);
+        PathologieInterface path=new PathologieInterface("chatonpat");
         try {
             path_bdd.insertPathologie(path);
         } catch (BddException.BddInsertException e) {

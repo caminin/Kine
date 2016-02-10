@@ -12,14 +12,14 @@ import charlot.rodolphe.com.gmail.kine.SuperClass.ElementInterface;
 public class TemoinResInterface extends ContextNeeded implements ElementInterface {
     public static Context _context;
     public int id_temoin_res;
-    public int id_list_res;
+    public int id_pathologie;
     public int id_test_temoin;
     public String comparateur_temoin;
     public String variable_1;
     public String variable_2;
 
-    public TemoinResInterface(int _id_list_res, int _id_test_temoin, String _comparateur_temoin, String _variable_1){
-        id_list_res=_id_list_res;
+    public TemoinResInterface(int _id_pathologie, int _id_test_temoin, String _comparateur_temoin, String _variable_1){
+        id_pathologie=_id_pathologie;
         id_test_temoin=_id_test_temoin;
         comparateur_temoin=_comparateur_temoin;
         variable_1=_variable_1;
@@ -31,8 +31,8 @@ public class TemoinResInterface extends ContextNeeded implements ElementInterfac
         _context=context;
     }
 
-    public TemoinResInterface(int _id_list_res, int _id_test_temoin, String _comparateur_temoin, String _variable_1, String _variable_2){
-        id_list_res=_id_list_res;
+    public TemoinResInterface(int _id_pathologie, int _id_test_temoin, String _comparateur_temoin, String _variable_1, String _variable_2){
+        id_pathologie=_id_pathologie;
         id_test_temoin=_id_test_temoin;
         comparateur_temoin=_comparateur_temoin;
         variable_1=_variable_1;
@@ -77,12 +77,12 @@ public class TemoinResInterface extends ContextNeeded implements ElementInterfac
     }
 
     public String toString(){
-        return id_list_res+" "+id_temoin_res+" "+id_test_temoin+" et comme res-> "+comparateur_temoin+" "+variable_1+" "+variable_2;
+        return id_pathologie+" "+id_temoin_res+" "+id_test_temoin+" et comme res-> "+comparateur_temoin+" "+variable_1+" "+variable_2;
     }
 
     public boolean sameValue(TemoinResInterface _temoin) {
         return (_temoin.id_temoin_res == id_temoin_res &&
-                _temoin.id_list_res == id_list_res &&
+                _temoin.id_pathologie == id_pathologie &&
                 _temoin.id_test_temoin == id_test_temoin &&
                 _temoin.comparateur_temoin.equalsIgnoreCase(comparateur_temoin) &&
                 _temoin.variable_1.equalsIgnoreCase(variable_1) &&
@@ -99,7 +99,7 @@ public class TemoinResInterface extends ContextNeeded implements ElementInterfac
         test_bdd.close();
 
 
-        String res="Temoin de la liste "+id_list_res+" au test "+test.nom_test+" qui donne "
+        String res="Temoin de la liste "+id_pathologie+" au test "+test.nom_test+" qui donne "
                 +comparateur_temoin+variable_1+variable_2;
         return res;
     }

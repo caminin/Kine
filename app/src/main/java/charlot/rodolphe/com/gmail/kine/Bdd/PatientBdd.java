@@ -61,58 +61,7 @@ public class PatientBdd extends BddClass implements BddInterface {
 		return bdd;
 	}
 
-    @Override
-    public String toText(int id)
-            throws BddException.BddNoElementException {
-        PatientInterface pat= getPatientWithId(id);
-        String res=pat.nom_pat+" "+pat.prenom_pat;
-        return res;
-    }
-
-    @Override
-    public ElementInterface[] getAll() throws BddException.BddNoElementException {
-        return getAllPatient();
-    }
-
-    @Override
-    public void deleteWithId(int id)
-            throws BddException.BddNoElementException {
-        removePatientWithID(id);
-    }
-
-    @Override
-    public void getByContext(Activity act)
-            throws BddException.BddInsertException {
-        ContentValues values = new ContentValues();
-        values.put(COL_NOM_PATIENT, ((EditText) act.findViewById(R.id.nom)).getText().toString());
-        values.put(COL_PRENOM_PATIENT, ((EditText)act.findViewById(R.id.prenom)).getText().toString());
-        values.put(COL_DATENAISS_PATIENT, Long.toString(((act.findViewById(R.id.date)).getDrawingTime())));
-        values.put(COL_SYMPTOME_PATIENT, ((EditText) act.findViewById(R.id.symptome)).getText().toString());
-
-        if(bdd.insert(TABLE_PATIENT,null,values)==-1){
-            throw new BddException.BddInsertException("PatientBdd");
-        }
-    }
-
-    @Override
-    public void setFieldByElement(Activity act,ElementInterface element) {
-        EditText et_nom=(EditText) act.findViewById(R.id.nom);
-        EditText et_prenom=(EditText) act.findViewById(R.id.prenom);
-        DatePicker dp_date=(DatePicker) act.findViewById(R.id.date);
-        EditText et_symptome=(EditText) act.findViewById(R.id.symptome);
-
-        PatientInterface pat=(PatientInterface)element;
-
-        Calendar cal=Calendar.getInstance();
-        cal.setTime(pat.dateNaiss_pat);
-
-        et_nom.setText(pat.nom_pat);
-        et_prenom.setText(pat.prenom_pat);
-        dp_date.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), null);
-        et_symptome.setText(pat.symptome_pat);
-
-    }
-
+   //BDD Actions
     public long insertPatient(PatientInterface patient)
             throws BddException.BddInsertException {
 		//Création d'un ContentValues (fonctionne comme une HashMap)
@@ -156,7 +105,7 @@ public class PatientBdd extends BddClass implements BddInterface {
             throws BddException.BddNoElementException {
 		
 		//Récupère dans un Cursor les valeur correspondant à un patient contenu dans la BDD (ici on sélectionne le patient grâce à son nom)
-		Cursor c = bdd.query(TABLE_PATIENT, new String[] {COL_ID_PATIENT, COL_NOM_PATIENT, COL_PRENOM_PATIENT, COL_DATENAISS_PATIENT, COL_SYMPTOME_PATIENT}, COL_NOM_PATIENT + " LIKE \"" + nom +"\"", null, null, null, null);
+		Cursor c = bdd.query(TABLE_PATIENT, new String[]{COL_ID_PATIENT, COL_NOM_PATIENT, COL_PRENOM_PATIENT, COL_DATENAISS_PATIENT, COL_SYMPTOME_PATIENT}, COL_NOM_PATIENT + " LIKE \"" + nom + "\"", null, null, null, null);
 		return cursorToPatient(c);
 	}
 	
@@ -167,7 +116,6 @@ public class PatientBdd extends BddClass implements BddInterface {
 		Cursor c = bdd.query(TABLE_PATIENT, new String[] {COL_ID_PATIENT, COL_NOM_PATIENT, COL_PRENOM_PATIENT, COL_DATENAISS_PATIENT, COL_SYMPTOME_PATIENT}, COL_ID_PATIENT + " = " + Integer.toString(id), null, null, null, null);
 		return cursorToPatient(c);
 	}
-	
 	
 	public PatientInterface[] getAllPatient(){
 		int i=0;
@@ -197,7 +145,7 @@ public class PatientBdd extends BddClass implements BddInterface {
 		
 		
 	}
-	
+
 	//Cette méthode permet de convertir un cursor en un patient
     private PatientInterface cursorToPatient(Cursor c)
             throws BddException.BddNoElementException {
@@ -224,6 +172,27 @@ public class PatientBdd extends BddClass implements BddInterface {
         return patient;
 		}
 
+    //OVERRIDE INTERFACE
+    @Override
+    public String toText(int id)
+            throws BddException.BddNoElementException {
+        PatientInterface pat= getPatientWithId(id);
+        String res=pat.nom_pat+" "+pat.prenom_pat;
+        return res;
+    }
+
+    @Override
+    public ElementInterface[] getAll() throws BddException.BddNoElementException {
+        return getAllPatient();
+    }
+
+    @Override
+    public void deleteWithId(int id)
+            throws BddException.BddNoElementException {
+        removePatientWithID(id);
+    }
+
+
     @Override
     public int getXml() {
         return R.layout.formulaire_patient;
@@ -237,6 +206,51 @@ public class PatientBdd extends BddClass implements BddInterface {
     @Override
     public int getForeignList(ElementInterface element, int numListe) {
         return -1;
+    }
+
+    @Override
+    public void switchButtonVisibility(Activity act, int numListe, int ajoutVisible, int otherVisible) {
+
+    }
+
+
+    @Override
+    public void deleteListWithNumAndId(int numListe, int id) throws BddException.BddNoElementException {
+
+    }
+
+
+    @Override
+    public void getByContext(Activity act)
+            throws BddException.BddInsertException {
+        ContentValues values = new ContentValues();
+        values.put(COL_NOM_PATIENT, ((EditText) act.findViewById(R.id.nom)).getText().toString());
+        values.put(COL_PRENOM_PATIENT, ((EditText)act.findViewById(R.id.prenom)).getText().toString());
+        values.put(COL_DATENAISS_PATIENT, Long.toString(((act.findViewById(R.id.date)).getDrawingTime())));
+        values.put(COL_SYMPTOME_PATIENT, ((EditText) act.findViewById(R.id.symptome)).getText().toString());
+
+        if(bdd.insert(TABLE_PATIENT,null,values)==-1){
+            throw new BddException.BddInsertException("PatientBdd");
+        }
+    }
+
+    @Override
+    public void setFieldByElement(Activity act,ElementInterface element) {
+        EditText et_nom=(EditText) act.findViewById(R.id.nom);
+        EditText et_prenom=(EditText) act.findViewById(R.id.prenom);
+        DatePicker dp_date=(DatePicker) act.findViewById(R.id.date);
+        EditText et_symptome=(EditText) act.findViewById(R.id.symptome);
+
+        PatientInterface pat=(PatientInterface)element;
+
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(pat.dateNaiss_pat);
+
+        et_nom.setText(pat.nom_pat);
+        et_prenom.setText(pat.prenom_pat);
+        dp_date.init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), null);
+        et_symptome.setText(pat.symptome_pat);
+
     }
 
 
